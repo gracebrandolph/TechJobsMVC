@@ -2,6 +2,21 @@
 
 <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-@{ 
-    // TODO #3 - Use the same list display from Views/Search/Index.cshtml 
+
+    @*// TODO #3 - Use the same list display from Views/Search/Index.cshtml
+    //clicking on location link will display a list of jobs in the given location using Jobs action method (action method is fully implemented already)*@
+
+@if (ViewBag.jobs != null)
+{
+    @foreach (Dictionary<string, string> dict in ViewBag.jobs)
+    {
+        <table class="job-listing">
+
+            @foreach (KeyValuePair<string, string> i in dict)
+            {
+                <tr><td>@i.Key</td><td>@i.Value</td></tr>
+            }
+
+        </table>
+    }
 }

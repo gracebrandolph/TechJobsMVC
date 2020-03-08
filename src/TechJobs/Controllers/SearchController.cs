@@ -16,5 +16,25 @@ namespace TechJobs.Controllers
         // TODO #1 - Create a Results action method to process 
         // search request and display results
 
+        public IActionResult Results(string searchTerm, string searchType)
+        {
+
+            ViewBag.columns = ListController.columnChoices;
+            ViewBag.title = "Results";
+
+            if (searchType.Equals("all"))
+            {
+                List<Dictionary<string, string>> jobs = JobData.FindByValue(searchTerm);
+                ViewBag.jobs = jobs;
+            }
+            else
+            {
+                List<Dictionary<string, string>> jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+                ViewBag.jobs = jobs;
+            }
+           
+            return View("Views/Search/Index.cshtml");
+        }
+
     }
 }
